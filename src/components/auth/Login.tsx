@@ -1,17 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Stack,
-  TextField,
-  Typography,
-  Link as MUILink,
-} from "@mui/material";
+import { Stack, Typography, Link as MUILink } from "@mui/material";
+import AuthForm from "./AuthForm";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   return (
     <Stack
       spacing={3}
@@ -22,22 +13,10 @@ export default function Login() {
         maxWidth: { xs: "70%", md: "30%" },
       }}
     >
-      <TextField
-        variant="outlined"
-        type="email"
-        label="Email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
+      <AuthForm
+        submitLabel="Login"
+        onSubmit={async (data) => console.log(data)}
       />
-      <TextField
-        variant="outlined"
-        type="password"
-        label="Password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-
-      <Button variant="contained">Login</Button>
 
       <Typography alignSelf="center">
         Don't have an account yet?{" "}

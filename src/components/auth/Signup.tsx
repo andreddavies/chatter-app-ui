@@ -1,16 +1,12 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Stack,
-  TextField,
-  Typography,
-  Link as MUILink,
-} from "@mui/material";
+import { Typography, Link as MUILink, Stack } from "@mui/material";
+
+import { useCreateUser } from "../../services/user/create";
+
+import AuthForm from "./AuthForm";
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [createUser] = useCreateUser();
 
   return (
     <Stack
@@ -22,22 +18,19 @@ export default function Signup() {
         maxWidth: { xs: "70%", md: "30%" },
       }}
     >
-      <TextField
-        variant="outlined"
-        type="email"
-        label="Email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
+      <AuthForm
+        submitLabel="Register"
+        onSubmit={async ({ email, password }) => {
+          await createUser({
+            variables: {
+              createUserInput: {
+                email,
+                password,
+              },
+            },
+          });
+        }}
       />
-      <TextField
-        variant="outlined"
-        type="password"
-        label="Password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-
-      <Button variant="contained">Signup</Button>
 
       <Typography alignSelf="center">
         Already have an account?{" "}
