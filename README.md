@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+# Chatter App UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This project is a Frontend for [Chatter App API](https://github.com/andreddavies/chatter-app-backend) built with [ReactJS](https://react.dev/), [Vite](https://vite.dev/) and [MUI](https://mui.com/).
+It uses [Apollo Client](https://www.apollographql.com/docs/react/get-started) for API requests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Clone
 
-## Expanding the ESLint configuration
+- First you need to clone this repository running:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+bash
+$ git clone git@github.com:andreddavies/chatter-app-ui.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Installation
+
+```
+bash
+$ yarn install
+```
+
+## Running the app
+
+- First clone the API and follow the documentation instructions:
+  [Chatter App API](https://github.com/andreddavies/chatter-app-backend)
+
+```
+bash
+# development
+$ yarn dev
+```
+
+## Guide
+
+- Use the App to talk with other people
+
+## Notes
+
+- I will continue to update this document while the API is not yet complete
+- The image used in this document and in the project, such as the favico, are not mine
+- This project is just for study purposes. It doesn't have commercial intentions
+
+## Stay in touch
+
+- Author - [André Davies](https://www.linkedin.com/in/andré-davies-24a69b17a/)
