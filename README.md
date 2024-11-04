@@ -9,15 +9,13 @@ It uses [Apollo Client](https://www.apollographql.com/docs/react/get-started) fo
 
 - First you need to clone this repository running:
 
-```
-bash
+```bash
 $ git clone git@github.com:andreddavies/chatter-app-ui.git
 ```
 
 ## Installation
 
-```
-bash
+```bash
 $ yarn install
 ```
 
@@ -26,8 +24,7 @@ $ yarn install
 - First clone the API and follow the documentation instructions:
   [Chatter App API](https://github.com/andreddavies/chatter-app-backend)
 
-```
-bash
+```bash
 # development
 $ yarn dev
 ```
