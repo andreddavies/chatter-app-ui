@@ -9,7 +9,11 @@ type TComponentProps = {
   onSubmit: (data: ICreateUserInput) => Promise<void>;
 };
 
-const AuthForm = ({ error, onSubmit, submitLabel }: TComponentProps) => {
+export default function AuthForm({
+  error,
+  onSubmit,
+  submitLabel,
+}: TComponentProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,6 +47,4 @@ const AuthForm = ({ error, onSubmit, submitLabel }: TComponentProps) => {
       </Button>
     </Stack>
   );
-};
-
-export default AuthForm;
+}
