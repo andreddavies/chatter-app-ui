@@ -6,6 +6,7 @@ import { darkTheme } from "./theme";
 import client from "./constants/apollo-client";
 
 import router from "./components/router";
+import RouteGuard from "@components/auth/RouteGuard";
 
 export default function App() {
   return (
@@ -14,7 +15,9 @@ export default function App() {
         <CssBaseline />
 
         <Container>
-          <RouterProvider router={router} />
+          <RouteGuard>
+            <RouterProvider router={router} />
+          </RouteGuard>
         </Container>
       </ThemeProvider>
     </ApolloProvider>
