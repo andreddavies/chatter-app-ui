@@ -1,12 +1,38 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Link as MUILink, Stack } from "@mui/material";
 
-import { useCreateUser } from "../../services/user/create";
+import { ICreateUserInput, useCreateUser } from "../../services/user/create";
 
 import AuthForm from "./AuthForm";
+import { extractErrorMessage } from "../../utils/errors";
 
 export default function Signup() {
   const [createUser] = useCreateUser();
+
+  const [error, setError] = useState("");
+
+  const onSubmit = async ({
+    createUserInput: { email, password },
+  }: ICreateUserInput) => {
+    try {
+      await createUser({
+        variables: {
+          createUserInput: {
+            email,
+            password,
+          },
+        },
+      });
+
+      setError("");
+    } catch (err) {
+      const errorMessage = extractErrorMessage(err);
+
+      if (errorMessage) setError(errorMessage);
+      else setError("Unknown error occured");
+    }
+  };
 
   return (
     <Stack
@@ -18,19 +44,7 @@ export default function Signup() {
         maxWidth: { xs: "70%", md: "30%" },
       }}
     >
-      <AuthForm
-        submitLabel="Register"
-        onSubmit={async ({ email, password }) => {
-          await createUser({
-            variables: {
-              createUserInput: {
-                email,
-                password,
-              },
-            },
-          });
-        }}
-      />
+      <AuthForm error={error} onSubmit={onSubmit} submitLabel="Register" />
 
       <Typography alignSelf="center">
         Already have an account?{" "}

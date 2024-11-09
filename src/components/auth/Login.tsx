@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { Stack, Typography, Link as MUILink } from "@mui/material";
+
 import AuthForm from "./AuthForm";
+import { useLogin } from "../../services/auth/login";
 
 export default function Login() {
+  const { login, error } = useLogin();
+
   return (
     <Stack
       spacing={3}
@@ -14,8 +18,9 @@ export default function Login() {
       }}
     >
       <AuthForm
+        error={error}
         submitLabel="Login"
-        onSubmit={async (data) => console.log(data)}
+        onSubmit={({ createUserInput }) => login(createUserInput)}
       />
 
       <Typography alignSelf="center">
