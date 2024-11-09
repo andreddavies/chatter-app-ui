@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Link as MUILink, Stack } from "@mui/material";
 
-import { ICreateUserInput, useCreateUser } from "../../services/user/create";
+import { useLogin } from "@services/auth/login";
+import { extractErrorMessage } from "@utils/errors";
+import { ICreateUserInput, useCreateUser } from "@services/user/create";
 
-import AuthForm from "./AuthForm";
-import { extractErrorMessage } from "../../utils/errors";
-import { useLogin } from "../../services/auth/login";
+import AuthForm from "@components/auth/AuthForm";
 
 export default function Signup() {
   const { login } = useLogin();

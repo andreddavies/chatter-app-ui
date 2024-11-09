@@ -1,5 +1,5 @@
-import { excludedRoutes } from "../../constants/excluded-routes";
-import { useGetCurrentLoggedUser } from "../../services/user/getCurrentLoggedUser";
+import { excludedRoutes } from "@constants/excluded-routes";
+import { useGetCurrentLoggedUser } from "@services/user/getCurrentLoggedUser";
 
 type TComponentProps = {
   children: JSX.Element;

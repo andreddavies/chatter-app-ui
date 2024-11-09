@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Stack, Typography, Link as MUILink } from "@mui/material";
 
-import AuthForm from "./AuthForm";
-import { useLogin } from "../../services/auth/login";
+import { useLogin } from "@services/auth/login";
+
+import AuthForm from "@components/auth/AuthForm";
 
 export default function Login() {
   const { login, error } = useLogin();

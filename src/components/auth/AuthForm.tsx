@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack, TextField } from "@mui/material";
 
-import { ICreateUserInput } from "../../services/user/create";
-import { useGetCurrentLoggedUser } from "../../services/user/getCurrentLoggedUser";
+import { ICreateUserInput } from "@services/user/create";
+import { useGetCurrentLoggedUser } from "@services/user/getCurrentLoggedUser";
 
 type TComponentProps = {
   error?: string;
