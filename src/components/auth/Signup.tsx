@@ -6,8 +6,10 @@ import { ICreateUserInput, useCreateUser } from "../../services/user/create";
 
 import AuthForm from "./AuthForm";
 import { extractErrorMessage } from "../../utils/errors";
+import { useLogin } from "../../services/auth/login";
 
 export default function Signup() {
+  const { login } = useLogin();
   const [createUser] = useCreateUser();
 
   const [error, setError] = useState("");
@@ -24,6 +26,7 @@ export default function Signup() {
           },
         },
       });
+      await login({ email, password });
 
       setError("");
     } catch (err) {
