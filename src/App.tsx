@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import { Container, CssBaseline, Snackbar, ThemeProvider } from "@mui/material";
 
 import { darkTheme } from "./theme";
 import client from "./constants/apollo-client";
@@ -21,6 +21,8 @@ export default function App() {
             <RouterProvider router={router} />
           </RouteGuard>
         </Container>
+
+        <Snackbar />
       </ThemeProvider>
     </ApolloProvider>
   );
