@@ -2,8 +2,11 @@ import { MouseEvent, useState } from "react";
 import { Box, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import router from "@components/router";
+import { IPage } from "@interfaces/page.interface";
+
 type TComponentProps = {
-  pages: string[];
+  pages: IPage[];
 };
 
 export default function MobileNav({ pages }: TComponentProps) {
@@ -46,8 +49,14 @@ export default function MobileNav({ pages }: TComponentProps) {
         sx={{ display: { xs: "block", md: "none" } }}
       >
         {pages.map((page) => (
-          <MenuItem key={page} onClick={handleCloseNavMenu}>
-            <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+          <MenuItem
+            key={page.title}
+            onClick={() => {
+              handleCloseNavMenu();
+              router.navigate(page.path);
+            }}
+          >
+            <Typography sx={{ textAlign: "center" }}>{page.title}</Typography>
           </MenuItem>
         ))}
       </Menu>

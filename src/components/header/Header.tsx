@@ -1,3 +1,5 @@
+import { useReactiveVar } from "@apollo/client";
+import { authenticatedVar } from "@constants/authenticated";
 import { Box, AppBar, Toolbar, Container } from "@mui/material";
 
 import Settings from "./Settings";
@@ -5,10 +7,29 @@ import Navigation from "./Navigation";
 import MobileNav from "./mobile/MobileNav";
 
 import Logo from "@components/logo";
+import { IPage } from "@interfaces/page.interface";
 
-const pages: string[] = [];
+const pages: IPage[] = [
+  {
+    title: "Home",
+    path: "/",
+  },
+];
+
+const unauthenticatedPages: IPage[] = [
+  {
+    title: "Login",
+    path: "/login",
+  },
+  {
+    title: "Signup",
+    path: "/signup",
+  },
+];
 
 export default function Header() {
+  const authenticated = useReactiveVar(authenticatedVar);
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -22,7 +43,7 @@ export default function Header() {
             <Logo />
           </Box>
 
-          <MobileNav pages={pages} />
+          <MobileNav pages={authenticated ? pages : unauthenticatedPages} />
 
           <Box
             sx={{
@@ -35,9 +56,9 @@ export default function Header() {
             <Logo />
           </Box>
 
-          <Navigation pages={pages} />
+          <Navigation pages={authenticated ? pages : unauthenticatedPages} />
 
-          <Settings />
+          {authenticated && <Settings />}
         </Toolbar>
       </Container>
     </AppBar>
