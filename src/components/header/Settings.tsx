@@ -9,9 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 
-const settings = ["Logout"];
+import { onLogout } from "@utils/logout";
+import { useLogout } from "@services/auth/logout";
 
 export default function Settings() {
+  const { logout } = useLogout();
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -20,6 +23,12 @@ export default function Settings() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    onLogout();
+    handleCloseUserMenu();
   };
 
   return (
@@ -46,11 +55,9 @@ export default function Settings() {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography sx={{ textAlign: "center" }}>{setting}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem key="logout" onClick={handleLogout}>
+          <Typography textAlign="center">Logout</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );
