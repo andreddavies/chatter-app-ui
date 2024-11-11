@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { usePath } from "@hooks/usePath";
 import { snackVar } from "@constants/snack";
 import { authenticatedVar } from "@constants/authenticated";
 import { excludedRoutes } from "@constants/excluded-routes";
@@ -11,7 +12,7 @@ type TComponentProps = {
 };
 
 export default function RouteGuard({ children }: TComponentProps) {
-  const currPath = window.location.pathname;
+  const { path } = usePath();
   const { data: user, error } = useGetCurrentLoggedUser();
 
   useEffect(() => {
@@ -24,5 +25,5 @@ export default function RouteGuard({ children }: TComponentProps) {
     }
   }, [error]);
 
-  return <>{excludedRoutes.includes(currPath) ? children : user && children}</>;
+  return <>{excludedRoutes.includes(path) ? children : user && children}</>;
 }
