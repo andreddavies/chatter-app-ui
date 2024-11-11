@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 
+import { snackVar } from "@constants/snack";
 import { authenticatedVar } from "@constants/authenticated";
 import { excludedRoutes } from "@constants/excluded-routes";
+import { UNKNOWN_ERROR_SNACK_MESSAGE } from "@constants/errors";
 import { useGetCurrentLoggedUser } from "@services/user/getCurrentLoggedUser";
 
 type TComponentProps = {
@@ -10,11 +12,17 @@ type TComponentProps = {
 
 export default function RouteGuard({ children }: TComponentProps) {
   const currPath = window.location.pathname;
-  const { data: user } = useGetCurrentLoggedUser();
+  const { data: user, error } = useGetCurrentLoggedUser();
 
   useEffect(() => {
     if (user) authenticatedVar(true);
   }, [user]);
+
+  useEffect(() => {
+    if (error) {
+      if (error.networkError) snackVar(UNKNOWN_ERROR_SNACK_MESSAGE);
+    }
+  }, [error]);
 
   return <>{excludedRoutes.includes(currPath) ? children : user && children}</>;
 }

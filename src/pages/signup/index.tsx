@@ -4,6 +4,7 @@ import { Typography, Link as MUILink, Stack } from "@mui/material";
 
 import { useLogin } from "@services/auth/login";
 import { extractErrorMessage } from "@utils/errors";
+import { UNKNOWN_ERROR_MESSAGE } from "@constants/errors";
 import { ICreateUserInput, useCreateUser } from "@services/user/create";
 
 import AuthForm from "@components/auth/AuthForm";
@@ -33,7 +34,7 @@ export default function Signup() {
       const errorMessage = extractErrorMessage(err);
 
       if (errorMessage) setError(errorMessage);
-      else setError("Unknown error occured");
+      else setError(UNKNOWN_ERROR_MESSAGE);
     }
   };
 

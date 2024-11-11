@@ -10,7 +10,9 @@ import {
 } from "@mui/material";
 
 import { onLogout } from "@utils/logout";
+import { snackVar } from "@constants/snack";
 import { useLogout } from "@services/auth/logout";
+import { UNKNOWN_ERROR_SNACK_MESSAGE } from "@constants/errors";
 
 export default function Settings() {
   const { logout } = useLogout();
@@ -26,9 +28,13 @@ export default function Settings() {
   };
 
   const handleLogout = async () => {
-    await logout();
-    onLogout();
-    handleCloseUserMenu();
+    try {
+      await logout();
+      onLogout();
+      handleCloseUserMenu();
+    } catch (err) {
+      snackVar(UNKNOWN_ERROR_SNACK_MESSAGE);
+    }
   };
 
   return (
