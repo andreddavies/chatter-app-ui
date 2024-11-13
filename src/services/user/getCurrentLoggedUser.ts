@@ -3,8 +3,8 @@ import { gql, useQuery } from "@apollo/client";
 import { IUser } from "../../models/User";
 
 const GET_USER = gql`
-  query User {
-    user {
+  query Me {
+    me {
       _id
       email
     }
